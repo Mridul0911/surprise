@@ -1,0 +1,137 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a0a2e 50%, #0a0a0a 100%);
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+}
+
+#overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: clamp(20px, 4vw, 32px);
+  text-align: center;
+  pointer-events: none;
+  width: 90%;
+  max-width: 800px;
+  z-index: 10;
+}
+
+#storyText {
+  opacity: 0;
+  animation: fadeIn 1.5s forwards ease;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5),
+               0 0 40px rgba(255, 51, 102, 0.3),
+               2px 2px 4px rgba(0, 0, 0, 0.8);
+  line-height: 1.6;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+#storyText strong {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.2em;
+  font-weight: 600;
+  color: #ff6699;
+}
+
+@keyframes fadeIn {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#finalButtons {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  z-index: 100;
+  pointer-events: auto;
+}
+
+#finalButtons button {
+  padding: 15px 30px;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 102, 153, 0.2) 100%);
+  backdrop-filter: blur(10px);
+  color: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3),
+              0 0 20px rgba(255, 51, 102, 0.2);
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 0.5px;
+  pointer-events: auto;
+  position: relative;
+  z-index: 101;
+}
+
+#finalButtons button:hover {
+  transform: scale(1.1) translateY(-2px);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 102, 153, 0.3) 100%);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4),
+              0 0 30px rgba(255, 51, 102, 0.4);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+#finalButtons button:active {
+  transform: scale(1.05) translateY(0);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  #storyText {
+    font-size: clamp(18px, 5vw, 24px);
+  }
+  
+  #finalButtons {
+    bottom: 8%;
+    gap: 15px;
+  }
+  
+  #finalButtons button {
+    padding: 12px 24px;
+    font-size: 16px;
+  }
+}
+
+/* Cursor glow effect */
+body::before {
+  content: '';
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 102, 153, 0.3) 0%, transparent 70%);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease;
+  z-index: 9999;
+  opacity: 0;
+}
+
+body:hover::before {
+  opacity: 1;
+}
